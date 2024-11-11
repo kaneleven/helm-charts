@@ -1,4 +1,4 @@
-name: Packing for air gap
+name: hauler-packing
 run-name: ${{ github.actor }} is packeing everything for gitops.
 on:
   push:
@@ -21,15 +21,15 @@ jobs:
 
       - name: Fetch the content via a declarative manifest
         run: |
-          hauler store sync --files hauler-manifest.yaml
+          hauler store sync --files ./hauler-manifest.yaml
 
       - name: View and verify the content in the local hauler store
         run: |
-          hauler store sync --files hauler-manifest.yaml
+          hauler store sync --files ./hauler-manifest.yaml
 
       - name: Save and export the content in the local hauler store
         run: |
-          hauler store save --filename allinone.tar.zst
+          hauler store save --filename ./allinone.tar.zst
 
       - uses: actions/upload-artifact@v4
         with:
