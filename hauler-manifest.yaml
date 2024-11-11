@@ -72,9 +72,6 @@ spec:
     - name: gateway
       repoURL: https://istio-release.storage.googleapis.com/charts
       version: 1.23.3
-    - name: eg
-      repoURL: oci://docker.io/envoyproxy/gateway-helm
-      version: v1.1.1
 ---
 apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Files
