@@ -2,8 +2,8 @@ apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Images
 metadata:
   name: default
-  # annotations:
-  #   hauler.dev/platform: linux/amd64
+  annotations:
+    hauler.dev/platform: linux/amd64
   #   hauler.dev/registry: docker.io
   #   fluxcd.io/version: 2.4.0
 spec:
@@ -17,6 +17,8 @@ apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Images
 metadata:
   name: fluxcd
+  annotations:
+    hauler.dev/platform: linux/amd64
 spec:
   images:
     - name: ghcr.io/fluxcd/source-controller:v1.4.1
@@ -28,6 +30,8 @@ apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Images
 metadata:
   name: istio
+  annotations:
+    hauler.dev/platform: linux/amd64
 spec:
   images:
     - name: istio/pilot:1.23.3
@@ -37,6 +41,8 @@ apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Images
 metadata:
   name: nginx
+  annotations:
+    hauler.dev/platform: linux/amd64
 spec:
   images:
     - name: ghcr.io/nginxinc/nginx-gateway-fabric/nginx:1.4.0
@@ -72,6 +78,12 @@ spec:
     - name: gateway
       repoURL: https://istio-release.storage.googleapis.com/charts
       version: 1.23.3
+    # - name: eg
+    #   repoURL: oci://docker.io/envoyproxy/gateway-helm
+    #   version: v1.1.1
+    # - name: ngf
+    #   repoURL: oci://ghcr.io/nginxinc/charts/nginx-gateway-fabric
+    #   version: 1.4.0
 ---
 apiVersion: content.hauler.cattle.io/v1alpha1
 kind: Files
