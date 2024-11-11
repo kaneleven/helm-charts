@@ -1,0 +1,37 @@
+name: Packing for air gap
+run-name: ${{ github.actor }} is packeing everything for gitops.
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  syncimages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repos
+        uses: actions/checkout@v3
+
+      - name: Install haulor
+        run: |
+          curl -sfL https://get.hauler.dev | bash
+
+      - name: Fetch the content via a declarative manifest
+        run: |
+          hauler store sync --files hauler-manifest.yaml
+
+      - name: View and verify the content in the local hauler store
+        run: |
+          hauler store sync --files hauler-manifest.yaml
+
+      - name: Save and export the content in the local hauler store
+        run: |
+          hauler store save --filename allinone.tar.zst
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: artifact_for_hauler
+          path: ./allinone.tar.zst
